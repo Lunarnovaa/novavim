@@ -1,6 +1,7 @@
 {
   imports = [
-    ./lsp.nix
-    ./nvf.nix
+    ./common
+    ./languages
+    ./options
   ];
 }
