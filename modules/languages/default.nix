@@ -1,7 +1,0 @@
-{
-  imports = [
-    ./md
-    ./nix
-    ./ts
-  ];
-}
