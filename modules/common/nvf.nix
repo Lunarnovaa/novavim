@@ -1,7 +1,7 @@
-{lib, ...}: let  
+{lib, ...}: let
   # nvf for some reason sets theme stuff with mkDefault
-  # so i make a slightly more prioritized mkDefault version
-  # mkDefault = 1000, mkForce = 50 
+  # so I make a slightly more prioritized mkDefault version
+  # mkDefault = 1000, mkForce = 50
   mkMyDefault = lib.modules.mkOverride 900;
 in {
   vim = {

@@ -1,14 +1,44 @@
 {
   description = "Novavim: Lunarnova's Neovim Flake";
 
-  outputs = inputs:
-    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
-      imports = [
-        ./parts
-      ];
+  outputs = {
+    nixpkgs,
+    self,
+    ...
+  } @ inputs: let
+    inherit (inputs.lunarsLib.builders) mkNovavimPackage;
 
-      systems = import inputs.systems;
-    };
+    systems = import inputs.systems;
+
+    forAllSystems = function:
+      nixpkgs.lib.genAttrs
+      systems
+      (system: function nixpkgs.legacyPackages.${system});
+
+    packages = nixpkgs.lib.genAttrs systems (system: packages.${system});
+
+    moduleDir = ./modules;
+  in {
+    packages = forAllSystems (pkgs: {
+      #default = packages.maximal;
+      maximal = mkNovavimPackage {
+        inherit pkgs inputs moduleDir;
+        languages = [
+          "nix"
+          "ts"
+          "md"
+        ];
+      };
+      writing = mkNovavimPackage {
+        inherit pkgs inputs moduleDir;
+        languages = [
+          "md"
+        ];
+      };
+    });
+
+    formatter = forAllSystems (pkgs: pkgs.alejandra);
+  };
 
   inputs = {
     systems = {
@@ -19,18 +49,17 @@
 
     # powers the config
     nvf = {
-      url = "github:notashelf/nvf/v0.7";
+      url = "github:notashelf/nvf";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
         systems.follows = "systems";
         flake-utils.follows = "flake-utils";
       };
     };
 
-    # powers my modularized flake
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
+    lunarsLib = {
+      url = "github:Lunarnovaa/LunarsLib";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # included to unify inputs
