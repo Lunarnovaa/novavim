@@ -21,6 +21,10 @@
   in {
     packages = forAllSystems (pkgs: {
       #default = packages.maximal;
+      nix = mkNovavimPackage {
+        inherit pkgs inputs moduleDir;
+        languages = ["nix"];
+      };
       maximal = mkNovavimPackage {
         inherit pkgs inputs moduleDir;
         languages = [
@@ -41,31 +45,22 @@
   };
 
   inputs = {
-    systems = {
-      url = "github:nix-systems/x86_64-linux";
-    };
-
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
     # powers the config
     nvf = {
       url = "github:notashelf/nvf";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
-        flake-utils.follows = "flake-utils";
       };
     };
+
+    systems.url = "github:nix-systems/x86_64-linux";
+
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     lunarsLib = {
       url = "github:Lunarnovaa/LunarsLib";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # included to unify inputs
-    flake-utils = {
-      url = "github:numtide/flake-utils";
-      inputs.systems.follows = "systems";
     };
   };
 }

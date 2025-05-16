@@ -1,8 +1,6 @@
 {
   imports = [
-    ./interface
-    ./writing
-
+    ./interface.nix
     ./git.nix
     ./nvf.nix
   ];

@@ -1,21 +1,9 @@
-{lib, ...}: let
-  # nvf for some reason sets theme stuff with mkDefault
-  # so I make a slightly more prioritized mkDefault version
-  # mkDefault = 1000, mkForce = 50
-  mkMyDefault = lib.modules.mkOverride 900;
-in {
+{...}: {
   vim = {
     viAlias = true;
     vimAlias = true;
 
-    theme = {
-      enable = true;
-      name = mkMyDefault "catppuccin";
-      style = mkMyDefault "mocha";
-    };
-
-    lsp.enable = true;
-
+    # Keybinds & Options
     globals = {
       mapleader = " ";
       maplocalleader = " ";
@@ -26,6 +14,54 @@ in {
       relativenumber = true;
       mouse = "a";
       showmode = false;
+    };
+
+    # Writing
+    spellcheck.enable = true;
+
+    lsp = {
+      enable = true;
+
+      formatOnSave = true;
+      lightbulb.enable = true;
+      trouble.enable = true;
+      nvim-docs-view.enable = true;
+    };
+
+    autopairs.nvim-autopairs = {
+      enable = true;
+    };
+
+    autocomplete.blink-cmp.enable = true;
+
+    snippets.luasnip = {
+      enable = true;
+    };
+
+    binds = {
+      whichKey.enable = true;
+      cheatsheet.enable = true;
+      hardtime-nvim.enable = true;
+    };
+
+    telescope.enable = true;
+
+    utility = {
+      diffview-nvim.enable = true;
+      yanky-nvim.enable = true;
+      motion.leap.enable = true;
+    };
+
+    notes = {
+      todo-comments.enable = true;
+    };
+
+    comments.comment-nvim.enable = true;
+
+    # Some nice defaults for languages
+    languages = {
+      enableFormat = true;
+      enableTreesitter = true;
     };
   };
 }

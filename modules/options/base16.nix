@@ -35,8 +35,11 @@ in {
     colors = base16Options;
   };
 
-  config.vim.theme = mkIf cfg.enable {
-    name = "base16";
-    base16-colors = cfg.colors;
+  config.vim = mkIf cfg.enable {
+    theme = {
+      name = "base16";
+      base16-colors = cfg.colors;
+    };
+    statusline.lualine.theme = "base16";
   };
 }
