@@ -1,30 +1,20 @@
 {
   description = "Novavim: Lunarnova's Neovim Flake";
 
-  outputs = {
-    nixpkgs,
-    self,
-    ...
-  } @ inputs: let
+  outputs = inputs: let
     inherit (inputs.lunarsLib.builders) mkNovavimPackage;
 
     systems = import inputs.systems;
 
     forAllSystems = function:
-      nixpkgs.lib.genAttrs
-      systems
-      (system: function nixpkgs.legacyPackages.${system});
-
-    packages = nixpkgs.lib.genAttrs systems (system: packages.${system});
+      inputs.nixpkgs.lib.genAttrs systems (
+        system: function inputs.nixpkgs.legacyPackages.${system}
+      );
 
     moduleDir = ./modules;
   in {
     packages = forAllSystems (pkgs: {
-      #default = packages.maximal;
-      nix = mkNovavimPackage {
-        inherit pkgs inputs moduleDir;
-        languages = ["nix"];
-      };
+      default = inputs.self.packages.${pkgs.system}.maximal;
       maximal = mkNovavimPackage {
         inherit pkgs inputs moduleDir;
         languages = [
@@ -32,6 +22,10 @@
           "ts"
           "md"
         ];
+      };
+      nix = mkNovavimPackage {
+        inherit pkgs inputs moduleDir;
+        languages = ["nix"];
       };
       writing = mkNovavimPackage {
         inherit pkgs inputs moduleDir;

@@ -14,6 +14,8 @@
       relativenumber = true;
       mouse = "a";
       showmode = false;
+      tabstop = 2;
+      shiftwidth = 2;
     };
 
     # Writing
@@ -41,7 +43,17 @@
     binds = {
       whichKey.enable = true;
       cheatsheet.enable = true;
-      hardtime-nvim.enable = true;
+      hardtime-nvim = {
+        enable = true;
+        setupOpts = {
+          disabled_keys = {
+            "<Up>" = [false];
+            "<Left>" = [false];
+            "<Down>" = [false];
+            "<Right>" = [false];
+          };
+        };
+      };
     };
 
     telescope.enable = true;
