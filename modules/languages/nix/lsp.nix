@@ -8,5 +8,6 @@
       #server = "nixd";
     };
     treesitter.enable = true;
+    extraDiagnostics.enable = true;
   };
 }
