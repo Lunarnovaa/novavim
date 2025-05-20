@@ -39,6 +39,12 @@ in {
       };
     };
 
+    terminal.toggleterm = {
+      enable = true;
+      lazygit = {
+        enable = true;
+      };
+    };
     # Cosmetics
     theme = {
       enable = true;
