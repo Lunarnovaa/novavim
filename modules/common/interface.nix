@@ -41,6 +41,7 @@ in {
 
     terminal.toggleterm = {
       enable = true;
+      setupOpts.direction = "float";
       lazygit = {
         enable = true;
       };
