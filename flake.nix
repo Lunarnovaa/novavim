@@ -17,6 +17,7 @@
         languages = [
           "nix"
           "md"
+          "nu"
           "python"
           "ts"
         ];
