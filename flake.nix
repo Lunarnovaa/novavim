@@ -4,12 +4,9 @@
   outputs = inputs: let
     inherit (inputs.lunarsLib.builders) mkNovavimPackage;
 
-    systems = import inputs.systems;
-
-    forAllSystems = function:
-      inputs.nixpkgs.lib.genAttrs systems (
-        system: function inputs.nixpkgs.legacyPackages.${system}
-      );
+    # Just moves some boilerplate to my extended library.
+    # inputs.systems is applied to a genAttrs function.
+    forAllSystems = inputs.lunarsLib.systems.forAllSystems inputs;
 
     moduleDir = ./modules;
   in {
