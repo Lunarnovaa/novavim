@@ -1,4 +1,4 @@
-{...}: {
+{
   vim.keymaps = [
     {
       key = "<leader>bt";

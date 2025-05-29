@@ -1,4 +1,4 @@
-{...}: {
+{
   vim.languages.ts = {
     enable = true;
     format.enable = true;

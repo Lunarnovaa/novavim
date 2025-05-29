@@ -1,4 +1,4 @@
-{...}: {
+{
   vim = {
     viAlias = true;
     vimAlias = true;

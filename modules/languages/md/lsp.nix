@@ -1,4 +1,4 @@
-{...}: {
+{
   vim.languages.markdown = {
     enable = true;
     format.enable = true; #defaults to deno

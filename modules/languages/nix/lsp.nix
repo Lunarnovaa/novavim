@@ -1,4 +1,4 @@
-{...}: {
+{
   vim.languages.nix = {
     enable = true;
     format.enable = true; #defaults to alejandra
