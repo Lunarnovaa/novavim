@@ -6,12 +6,7 @@
 in {
   # UI Elements
   vim = {
-    filetree.neo-tree = {
-      enable = true;
-      #setupOpts = {
-
-      #};
-    };
+    filetree.nvimTree.enable = true;
 
     tabline.nvimBufferline.enable = true;
 

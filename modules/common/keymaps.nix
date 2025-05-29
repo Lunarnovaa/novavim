@@ -4,7 +4,7 @@
       key = "<leader>bt";
       mode = "n";
       silent = true;
-      action = ":Neotree<CR>";
+      action = ":NvimTreeToggle<CR>";
     }
   ];
 }
