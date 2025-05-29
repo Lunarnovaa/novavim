@@ -16,8 +16,9 @@
         inherit pkgs inputs moduleDir;
         languages = [
           "nix"
-          "ts"
           "md"
+          "python"
+          "ts"
         ];
       };
       nix = mkNovavimPackage {
