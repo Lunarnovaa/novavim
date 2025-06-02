@@ -47,10 +47,10 @@
         enable = true;
         setupOpts = {
           disabled_keys = {
-            "<Up>" = [false];
-            "<Left>" = [false];
-            "<Down>" = [false];
-            "<Right>" = [false];
+            "<Up>" = [];
+            "<Left>" = [];
+            "<Down>" = [];
+            "<Right>" = [];
           };
         };
       };
