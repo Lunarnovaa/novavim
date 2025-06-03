@@ -30,6 +30,7 @@ in {
         enable = true;
         setupOpts.custom_colorcolumn = {
           nix = "110";
+          md = "80";
         };
       };
     };
