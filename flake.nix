@@ -1,41 +1,14 @@
 {
   description = "Novavim: Lunarnova's Neovim Flake";
 
-  outputs = inputs: let
-    inherit (inputs.lunarsLib.builders) mkNovavimPackage;
+  outputs = inputs:
+    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+      imports = [./packages];
 
-    # Just moves some boilerplate to my extended library.
-    # inputs.systems is applied to a genAttrs function.
-    forAllSystems = inputs.lunarsLib.systems.forAllSystems inputs;
+      systems = import inputs.systems;
 
-    moduleDir = ./modules;
-  in {
-    packages = forAllSystems (pkgs: {
-      default = inputs.self.packages.${pkgs.system}.maximal;
-      maximal = mkNovavimPackage {
-        inherit pkgs inputs moduleDir;
-        languages = [
-          "nix"
-          "md"
-          "nu"
-          "python"
-          "ts"
-        ];
-      };
-      nix = mkNovavimPackage {
-        inherit pkgs inputs moduleDir;
-        languages = ["nix"];
-      };
-      writing = mkNovavimPackage {
-        inherit pkgs inputs moduleDir;
-        languages = [
-          "md"
-        ];
-      };
-    });
-
-    formatter = forAllSystems (pkgs: pkgs.alejandra);
-  };
+      perSystem = {pkgs, ...}: {formatter = pkgs.alejandra;};
+    };
 
   inputs = {
     # powers the config
@@ -54,6 +27,10 @@
     lunarsLib = {
       url = "github:Lunarnovaa/LunarsLib";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
     };
   };
 }

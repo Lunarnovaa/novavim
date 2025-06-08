@@ -28,9 +28,9 @@
   # End of MIT License Availability
   # Following is available under GPLv3 as according to LICENSE
 
-  cfg = config.programs.novavim.base16;
+  cfg = config.novavim.theme.base16;
 in {
-  options.programs.novavim.base16 = {
+  options.novavim.theme.base16 = {
     enable = mkEnableOption "base16-colors for Novavim";
     colors = base16Options;
   };
