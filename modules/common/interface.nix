@@ -6,8 +6,6 @@
 in {
   # UI Elements
   vim = {
-    filetree.nvimTree.enable = true;
-
     tabline.nvimBufferline.enable = true;
 
     treesitter.context.enable = true;

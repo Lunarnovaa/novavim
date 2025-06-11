@@ -56,8 +56,6 @@
       };
     };
 
-    telescope.enable = true;
-
     utility = {
       diffview-nvim.enable = true;
       yanky-nvim.enable = true;
