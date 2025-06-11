@@ -18,7 +18,6 @@
       shiftwidth = 2;
     };
 
-    # Writing
     spellcheck.enable = true;
 
     lsp = {
@@ -67,11 +66,5 @@
     };
 
     comments.comment-nvim.enable = true;
-
-    # Some nice defaults for languages
-    languages = {
-      enableFormat = true;
-      enableTreesitter = true;
-    };
   };
 }

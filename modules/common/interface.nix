@@ -1,9 +1,4 @@
-{lib, ...}: let
-  # nvf for some reason sets theme stuff with mkDefault
-  # so I make a slightly more prioritized mkDefault version
-  # mkDefault = 1000, mkForce = 50
-  mkMyDefault = lib.modules.mkOverride 900;
-in {
+{
   # UI Elements
   vim = {
     tabline.nvimBufferline.enable = true;
@@ -43,8 +38,8 @@ in {
     # Cosmetics
     theme = {
       enable = true;
-      name = mkMyDefault "catppuccin";
-      style = mkMyDefault "mocha";
+      name = "catppuccin";
+      style = "mocha";
       transparent = true;
     };
 
@@ -62,7 +57,7 @@ in {
     statusline = {
       lualine = {
         enable = true;
-        theme = mkMyDefault "catppuccin";
+        theme = "catppuccin";
       };
     };
   };
