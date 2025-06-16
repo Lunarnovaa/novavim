@@ -57,7 +57,10 @@
 
     utility = {
       diffview-nvim.enable = true;
-      yanky-nvim.enable = true;
+      yanky-nvim = {
+        enable = true;
+        setupOpts.ring.storage = "sqlite";
+      };
       motion.leap.enable = true;
     };
 

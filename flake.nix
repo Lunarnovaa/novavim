@@ -29,8 +29,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-    };
+    flake-parts.url = "github:hercules-ci/flake-parts";
   };
 }
