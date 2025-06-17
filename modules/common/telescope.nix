@@ -6,14 +6,24 @@
         {
           name = "fzf";
           packages = [pkgs.vimPlugins.telescope-fzf-native-nvim];
-          setup = {fzf = {fuzzy = true;};};
         }
         {
-          name = "file-browser";
+          name = "file_browser";
           packages = [pkgs.vimPlugins.telescope-file-browser-nvim];
-          setup = {file_browser = {hijack_netrw = true;};};
         }
       ];
+      setupOpts = {
+        extensions = {
+          fzf.fuzzy = true;
+          file_browser = {
+            hijack_netrw = true;
+            hidden = {
+              file_browser = true;
+              folder_browser = true;
+            };
+          };
+        };
+      };
     };
     keymaps = [
       {
