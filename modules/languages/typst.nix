@@ -26,7 +26,10 @@ in {
           ];
         };
       };
-      format.enable = true;
+      format = {
+        enable = true;
+        type = "typstyle";
+      };
       lsp.enable = true;
       treesitter.enable = true;
     };
