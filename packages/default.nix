@@ -1,5 +1,6 @@
 {inputs, ...}: {
   imports = [
+    ./novacademy.nix
     ./aurabora.nix
     ./lunarsLib.nix
     ./lunix.nix
