@@ -27,6 +27,7 @@
           nu.enable = true;
           py.enable = true;
           ts.enable = true;
+          typst.enable = true;
         };
       };
     };
