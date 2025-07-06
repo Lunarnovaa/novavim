@@ -29,6 +29,7 @@
           py.enable = true;
           ts.enable = true;
           typst.enable = true;
+          yaml.enable = true;
         };
       };
     };
