@@ -22,7 +22,7 @@
 
     systems.url = "github:nix-systems/x86_64-linux";
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     lunarsLib = {
       url = "github:Lunarnovaa/LunarsLib";
