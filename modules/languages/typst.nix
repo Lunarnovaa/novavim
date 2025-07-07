@@ -3,6 +3,7 @@
   config,
   ...
 }: let
+  inherit (lib.lists) singleton;
   inherit (lib.options) mkEnableOption;
   inherit (lib.modules) mkIf;
 
@@ -15,23 +16,32 @@ in {
   };
 
   config = mkIf cfg.enable {
-    vim.languages.typst = {
-      enable = true;
-      extensions = {
-        typst-preview-nvim = {
-          enable = true;
-          setupOpts.extra_args = [
-            "--ignore-system-fonts"
-            "--input=ver=draft"
-          ];
-        };
-      };
-      format = {
+    vim = {
+      languages.typst = {
         enable = true;
-        type = "typstyle";
+        extensions = {
+          typst-preview-nvim = {
+            enable = true;
+            setupOpts.extra_args = [
+              "--ignore-system-fonts"
+              "--input=ver=draft"
+            ];
+          };
+        };
+        format = {
+          enable = true;
+          type = "typstyle";
+        };
+        lsp.enable = true;
+        treesitter.enable = true;
       };
-      lsp.enable = true;
-      treesitter.enable = true;
+      keymaps = singleton {
+        key = "<leader>tp";
+        mode = "n";
+        silent = false;
+        action = ":TypstPreview<CR>";
+        desc = "Open Typst Render [Typst Preview]";
+      };
     };
   };
 }
