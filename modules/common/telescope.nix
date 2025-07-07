@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: let
+  inherit (lib.lists) singleton;
+in {
   vim = {
     telescope = {
       enable = true;
@@ -25,15 +31,13 @@
         };
       };
     };
-    keymaps = [
-      {
-        key = "<leader>fd";
-        mode = "n";
-        silent = true;
-        # Open file browser with path of current buffer
-        action = ":Telescope file_browser path=%:p:h select_buffer=true<CR>";
-        desc = "Directory [Telescope]";
-      }
-    ];
+    keymaps = singleton {
+      key = "<leader>fd";
+      mode = "n";
+      silent = true;
+      # Open file browser with path of current buffer
+      action = ":Telescope file_browser path=%:p:h select_buffer=true<CR>";
+      desc = "Directory [Telescope]";
+    };
   };
 }
