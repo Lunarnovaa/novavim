@@ -1,13 +1,14 @@
 {
   description = "Novavim: Lunarnova's Neovim Flake";
 
-  outputs = inputs:
-    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
-      imports = [./packages];
+  outputs = inputs: let
+    systems = import inputs.systems;
+  in
+    import ./. {
+      inherit systems;
+      inherit (inputs) lunarsLib nvf;
 
-      systems = import inputs.systems;
-
-      perSystem = {pkgs, ...}: {formatter = pkgs.alejandra;};
+      pkgs = inputs.nixpkgs.legacyPackages.${systems};
     };
 
   inputs = {
@@ -22,13 +23,11 @@
 
     systems.url = "github:nix-systems/x86_64-linux";
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     lunarsLib = {
       url = "github:Lunarnovaa/LunarsLib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    flake-parts.url = "github:hercules-ci/flake-parts";
   };
 }
