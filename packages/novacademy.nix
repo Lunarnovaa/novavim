@@ -8,6 +8,7 @@
     packages.novacademy = mkNovavimPackage {
       config.novavim = {
         languages = {
+          nix.enable = true;
           typst.enable = true;
           yaml.enable = true;
         };
