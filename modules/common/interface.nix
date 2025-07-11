@@ -7,7 +7,10 @@
 
     minimap.codewindow.enable = true;
 
-    dashboard.alpha.enable = true;
+    dashboard.alpha = {
+      enable = true;
+      theme = "theta";
+    };
 
     notify.nvim-notify.enable = true;
 
