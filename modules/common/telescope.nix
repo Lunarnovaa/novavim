@@ -1,10 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
-  inherit (lib.lists) singleton;
-in {
+{pkgs, ...}: {
   vim = {
     telescope = {
       enable = true;
