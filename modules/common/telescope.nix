@@ -12,32 +12,21 @@ in {
         {
           name = "fzf";
           packages = [pkgs.vimPlugins.telescope-fzf-native-nvim];
+          setup = {fzf.fuzzy = true;};
         }
         {
-          name = "file_browser";
-          packages = [pkgs.vimPlugins.telescope-file-browser-nvim];
+          name = "undo";
+          packages = [pkgs.vimPlugins.telescope-undo-nvim];
         }
       ];
-      setupOpts = {
-        extensions = {
-          fzf.fuzzy = true;
-          file_browser = {
-            hijack_netrw = true;
-            hidden = {
-              file_browser = true;
-              folder_browser = true;
-            };
-          };
-        };
-      };
     };
-    keymaps = singleton {
-      key = "<leader>fd";
-      mode = "n";
-      silent = true;
-      # Open file browser with path of current buffer
-      action = ":Telescope file_browser path=%:p:h select_buffer=true<CR>";
-      desc = "Directory [Telescope]";
-    };
+    keymaps = [
+      {
+        key = "<leader>fu";
+        mode = "n";
+        action = ":Telescope undo<CR>";
+        desc = "Undo [Telescope]";
+      }
+    ];
   };
 }
